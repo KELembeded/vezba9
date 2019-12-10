@@ -180,12 +180,9 @@ ssize_t led_write(struct file *pfile, const char __user *buffer, size_t length, 
 	long int led_val=0;
 
 	ret = copy_from_user(buff, buffer, length);
-	printk(KERN_INFO "Chars %d %d\n",buff[0],buff[1]); 
-	printk(KERN_INFO "Length %d \n",length); 
 	if(ret)
 		return -EFAULT;
-	buff[length-1] = '\0';
-	printk(KERN_INFO "Chars %d %d\n",buff[0],buff[1]); 
+	buff[length] = '\0';
 
 	// HEX  INPUT
 	if(buff[0] == '0' && (buff[1] == 'x' || buff[1] == 'X')) 
@@ -207,7 +204,7 @@ ssize_t led_write(struct file *pfile, const char __user *buffer, size_t length, 
 	if (!ret)
 	{
 		iowrite32((u32)led_val, lp->base_addr);
-		printk(KERN_INFO "Succesfully wrote value %#x",(u32)led_val); 
+		//printk(KERN_INFO "Succesfully wrote value %#x",(u32)led_val); 
 	}
 	else
 	{
