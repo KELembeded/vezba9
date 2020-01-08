@@ -9,6 +9,7 @@
 #include <linux/uaccess.h>
 #include <linux/errno.h>
 #include <linux/device.h>
+#include <linux/of.h>
 
 #include <linux/io.h> //iowrite ioread
 #include <linux/slab.h>//kmalloc kfree
