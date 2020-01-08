@@ -14,8 +14,9 @@
 #include <linux/io.h> //iowrite ioread
 #include <linux/slab.h>//kmalloc kfree
 #include <linux/platform_device.h>//platform driver
+#include <linux/of.h>//of match table
 #include <linux/ioport.h>//ioremap
-#define BUFF_SIZE 20
+
 #define BUFF_SIZE 20
 #define DRIVER_NAME "led"
 MODULE_LICENSE("Dual BSD/GPL");
@@ -218,8 +219,6 @@ ssize_t led_write(struct file *pfile, const char __user *buffer, size_t length, 
 static int __init led_init(void)
 {
    int ret = 0;
-
-	//Initialize array
 
    ret = alloc_chrdev_region(&my_dev_id, 0, 1, DRIVER_NAME);
    if (ret){
