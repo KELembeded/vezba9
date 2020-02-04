@@ -164,8 +164,7 @@ ssize_t led_read(struct file *pfile, char __user *buffer, size_t length, loff_t 
 		else
 			buff[5-i] = '0';
 	}
-	buff[6]= '\n';
-	len=7;
+	len=6;
 	ret = copy_to_user(buffer, buff, len);
 	if(ret)
 		return -EFAULT;
